@@ -1,0 +1,13 @@
+[GENERAL]
+PORT = 3001
+SIMILARITY_MEASURE = "cosine"
+CHAT_MODEL_PROVIDER = "openai" # "openai" or "ollama" or "groq"
+CHAT_MODEL = "GPT-3.5-turbo"
+
+[API_KEYS]
+OPENAI = ""
+GROQ = ""
+
+[API_ENDPOINTS]
+SEARXNG = "http://localhost:4000"
+OLLAMA = ""

@@ -1,0 +1,40 @@
+services:
+  searxng:
+    build:
+      context: .
+      dockerfile: docker/searxng.dockerfile
+    ports:
+      - 4000:8080
+    networks:
+      - future-search
+
+  future-search-backend:
+    build:
+      context: .
+      dockerfile: docker/backend.dockerfile
+      args:
+        - SEARXNG_API_URL=http://searxng:8080
+    depends_on:
+      - searxng
+    ports:
+      - 3002:3002
+    networks:
+      - future-search
+
+  future-search-frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend.dockerfile
+      args:
+        - NEXT_PUBLIC_WS_URL=ws://future-search-backend:3002
+        - NEXT_PUBLIC_API_URL=http://future-search-backend:3002/api
+    depends_on:
+      - future-search-backend
+    ports:
+      - 3003:3003
+    networks:
+      - future-search
+
+networks:
+  future-search:
+    driver: bridge
