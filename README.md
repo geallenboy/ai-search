@@ -101,10 +101,11 @@ cd ../backend
 pnpm install
 pnpm run dev
 
+```
+
 
 
 ## 目录结构
-
 ```
 - backend(后端)
 - docker(存放docker配置文件)
